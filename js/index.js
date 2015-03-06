@@ -1,1 +1,185 @@
-var width=2*document.body.clientWidth,height=2*document.body.clientHeight,canvas=document.getElementById("canvas"),ctx=canvas.getContext("2d"),fps=60,frameTime=1e3/fps,ua=navigator.userAgent,getRandomInt=function(t,e){return Math.floor(Math.random()*(e-t))+t},getDegree=function(t){return t/Math.PI*180},getRadian=function(t){return t*Math.PI/180},getDistance=function(t,e,n,i){var r=t-n,s=e-i;return Math.sqrt(r*r+s*s)},easing=function(t,e,n,i,r){switch(t){case"linear":return i*e/r+n;case"easeInCubic":return e/=r,i*e*e*e+n;case"easeOutCubic":return e/=r,e--,i*(e*e*e+1)+n;case"easeInExpo":return i*Math.pow(2,10*(e/r-1))+n;case"easeOutExpo":return i*(-1*Math.pow(2,-10*e/r)+1)+n}},debounce=function(t,e,n){var i;t.addEventListener(e,function(){clearTimeout(i),i=setTimeout(function(){n()},500)},!1)},canvasResize=function(){width=2*document.body.clientWidth,height=2*document.body.clientHeight,canvas.width=width,canvas.height=height,canvas.style.width=width/2+"px",canvas.style.height=height/2+"px"};debounce(window,"resize",function(){canvasResize()}),canvasResize();var animeObjArr=[],animeObjNum=0,spredObjArr=[],spredObjNum=0,lastTimeRender=+new Date,lastTimeObjPush=+new Date,lastTimeTouchStart=0,lastTimePoint={x:0,y:0},point={x:width/2,y:height/2},pointSpred={x:0,y:0},baseLength=0,isTouchMove=!1,instance=0,elmInstance=document.getElementById("instanceNum"),resetSize=function(){point.x=width/2,point.y=height/2,baseLength=width>height?height:width};resetSize(),debounce(window,"resize",function(){resetSize()});var animeObj=function(t,e,n){this.br=n?getRandomInt(baseLength/20,baseLength/16):getRandomInt(baseLength/16,baseLength/12),this.r=this.br,this.t=0,this.x=t,this.y=e,this.d=ua.indexOf("Mobile")>-1?500:800,this.color={r:getRandomInt(0,99)+100,g:getRandomInt(0,33),b:getRandomInt(0,33)},this.o=1};animeObj.prototype.move=function(){this.t+=frameTime,this.r=easing("easeOutExpo",this.t,0,this.br,this.d),this.t>.5*this.d&&(this.o=1-(this.t-.5*this.d)/(.5*this.d))},animeObj.prototype.render=function(){instance++,ctx.beginPath(),ctx.arc(this.x,this.y,this.r,0,Math.PI/180,!0),ctx.fillStyle="rgba("+this.color.r+", "+this.color.g+", "+this.color.b+", "+this.o+")",ctx.fill(),ctx.closePath()},animeObj.prototype.isLast=function(){return this.t>this.d?!0:!1};var spredObj=function(t,e){this.r=0,this.rMin=baseLength/5,this.rMax=baseLength/3,this.t=0,this.x=t,this.y=e,this.d=200,this.objArr=[],this.objNum=0,this.lastTimeObjPush=0};spredObj.prototype.spred=function(){this.t+=frameTime,this.r=easing("linear",this.t,this.rMin,this.rMax-this.rMin,this.d)},spredObj.prototype.constructor=function(){var t=+new Date;if(t-this.lastTimeObjPush>=frameTime&&this.t<=this.d){for(var e=0;10>e;e++){var n=getRandomInt(0,360),i=this.r,r=this.x+Math.cos(getRadian(n))*i,s=this.y+Math.sin(getRadian(n))*i;this.objArr.push(new animeObj(r,s,!0))}this.lastTimeObjPush=+new Date}},spredObj.prototype.render=function(){this.objNum=0;for(var t=this.objArr.length-1;t>=0;t--)this.objArr[t]&&(this.objNum++,this.objArr[t].move(),this.objArr[t].render(),this.objArr[t].isLast()&&delete this.objArr[t]);console.log(this.objNum)},spredObj.prototype.isLast=function(){return this.t>this.d&&this.objNum<1?!0:!1};var render=function(){instance=0,ctx.clearRect(0,0,width,height),animeObjNum=0;for(var t=0;t<animeObjArr.length;t++)animeObjArr[t]&&(animeObjNum++,animeObjArr[t].move(),animeObjArr[t].render(),animeObjArr[t].isLast()&&delete animeObjArr[t]);spredObjNum=0;for(var t=0;t<spredObjArr.length;t++)spredObjArr[t]&&(spredObjNum++,spredObjArr[t].spred(),spredObjArr[t].constructor(),spredObjArr[t].render(),spredObjArr[t].isLast()&&delete spredObjArr[t])},renderloop=function(){var t=+new Date;if(requestAnimationFrame(renderloop),t-lastTimeRender>=frameTime&&(render(),lastTimeRender=+new Date,Math.abs(lastTimePoint.x-point.x)<20&&Math.abs(lastTimePoint.y-point.y)<20?isTouchMove=!1:(isTouchMove=!0,lastTimePoint.x=point.x,lastTimePoint.y=point.y),1>spredObjNum||isTouchMove)){for(var e=0;3>e;e++){var n=getRandomInt(0,360),i=0,r=0,s=0;i=isTouchMove?getRandomInt(0,baseLength/9):getRandomInt(0,baseLength/4),r=point.x+Math.cos(getRadian(n))*i,s=point.y+Math.sin(getRadian(n))*i,animeObjArr.push(new animeObj(r,s))}lastTimeObjPush=+new Date}elmInstance.textContent=instance};renderloop(),document.addEventListener("mousedown",function(t){t.preventDefault(),lastTimeTouchStart=+new Date},!1),document.addEventListener("mousemove",function(t){t.preventDefault(),isTouchMove||(isTouchMove=!0),point.x=2*t.clientX,point.y=2*t.clientY},!1),document.addEventListener("mouseout",function(t){t.preventDefault(),isTouchMove=!1,point.x=width/2,point.y=height/2},!1),document.addEventListener("mouseup",function(t){var e=+new Date;100>e-lastTimeTouchStart&&(pointSpred.x=2*t.clientX,pointSpred.y=2*t.clientY,spredObjArr.push(new spredObj(pointSpred.x,pointSpred.y)))},!1),document.addEventListener("touchstart",function(t){t.preventDefault(),lastTimeTouchStart=+new Date,pointSpred.x=2*t.touches[0].pageX,pointSpred.y=2*t.touches[0].pageY},!1),document.addEventListener("touchmove",function(t){t.preventDefault(),point.x=2*t.touches[0].pageX,point.y=2*t.touches[0].pageY},!1),document.addEventListener("touchend",function(t){t.preventDefault();var e=+new Date;isTouchMove=!1,100>e-lastTimeTouchStart&&spredObjArr.push(new spredObj(pointSpred.x,pointSpred.y))},!1);
+(function() {
+
+    var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
+
+    // Main
+    initHeader();
+    initAnimation();
+    addListeners();
+
+    function initHeader() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        target = {x: width/2, y: height/2};
+
+        largeHeader = document.getElementById('large-header');
+        largeHeader.style.height = height+'px';
+
+        canvas = document.getElementById('demo-canvas');
+        canvas.width = width;
+        canvas.height = height;
+        ctx = canvas.getContext('2d');
+
+        // create points
+        points = [];
+        for(var x = 0; x < width; x = x + width/20) {
+            for(var y = 0; y < height; y = y + height/20) {
+                var px = x + Math.random()*width/20;
+                var py = y + Math.random()*height/20;
+                var p = {x: px, originX: px, y: py, originY: py };
+                points.push(p);
+            }
+        }
+
+        // for each point find the 5 closest points
+        for(var i = 0; i < points.length; i++) {
+            var closest = [];
+            var p1 = points[i];
+            for(var j = 0; j < points.length; j++) {
+                var p2 = points[j]
+                if(!(p1 == p2)) {
+                    var placed = false;
+                    for(var k = 0; k < 5; k++) {
+                        if(!placed) {
+                            if(closest[k] == undefined) {
+                                closest[k] = p2;
+                                placed = true;
+                            }
+                        }
+                    }
+
+                    for(var k = 0; k < 5; k++) {
+                        if(!placed) {
+                            if(getDistance(p1, p2) < getDistance(p1, closest[k])) {
+                                closest[k] = p2;
+                                placed = true;
+                            }
+                        }
+                    }
+                }
+            }
+            p1.closest = closest;
+        }
+
+        // assign a circle to each point
+        for(var i in points) {
+            var c = new Circle(points[i], 2+Math.random()*2, 'rgba(255,255,255,0.3)');
+            points[i].circle = c;
+        }
+    }
+
+    // Event handling
+    function addListeners() {
+        if(!('ontouchstart' in window)) {
+            window.addEventListener('mousemove', mouseMove);
+        }
+        window.addEventListener('scroll', scrollCheck);
+        window.addEventListener('resize', resize);
+    }
+
+    function mouseMove(e) {
+        var posx = posy = 0;
+        if (e.pageX || e.pageY) {
+            posx = e.pageX;
+            posy = e.pageY;
+        }
+        else if (e.clientX || e.clientY)    {
+            posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+        target.x = posx;
+        target.y = posy;
+    }
+
+    function scrollCheck() {
+        if(document.body.scrollTop > height) animateHeader = false;
+        else animateHeader = true;
+    }
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        largeHeader.style.height = height+'px';
+        canvas.width = width;
+        canvas.height = height;
+    }
+
+    // animation
+    function initAnimation() {
+        animate();
+        for(var i in points) {
+            shiftPoint(points[i]);
+        }
+    }
+
+    function animate() {
+        if(animateHeader) {
+            ctx.clearRect(0,0,width,height);
+            for(var i in points) {
+                // detect points in range
+                if(Math.abs(getDistance(target, points[i])) < 4000) {
+                    points[i].active = 0.3;
+                    points[i].circle.active = 0.6;
+                } else if(Math.abs(getDistance(target, points[i])) < 20000) {
+                    points[i].active = 0.1;
+                    points[i].circle.active = 0.3;
+                } else if(Math.abs(getDistance(target, points[i])) < 40000) {
+                    points[i].active = 0.02;
+                    points[i].circle.active = 0.1;
+                } else {
+                    points[i].active = 0;
+                    points[i].circle.active = 0;
+                }
+
+                drawLines(points[i]);
+                points[i].circle.draw();
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function shiftPoint(p) {
+        TweenLite.to(p, 1+1*Math.random(), {x:p.originX-50+Math.random()*100,
+            y: p.originY-50+Math.random()*100, ease:Circ.easeInOut,
+            onComplete: function() {
+                shiftPoint(p);
+            }});
+    }
+
+    // Canvas manipulation
+    function drawLines(p) {
+        if(!p.active) return;
+        for(var i in p.closest) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p.closest[i].x, p.closest[i].y);
+            ctx.strokeStyle = 'rgba(156,217,249,'+ p.active+')';
+            ctx.stroke();
+        }
+    }
+
+    function Circle(pos,rad,color) {
+        var _this = this;
+
+        // constructor
+        (function() {
+            _this.pos = pos || null;
+            _this.radius = rad || null;
+            _this.color = color || null;
+        })();
+
+        this.draw = function() {
+            if(!_this.active) return;
+            ctx.beginPath();
+            ctx.arc(_this.pos.x, _this.pos.y, _this.radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'rgba(64, 199,140,'+ _this.active+')';
+            ctx.fill();
+        };
+    }
+
+    // Util
+    function getDistance(p1, p2) {
+        return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+    }
+
+})();

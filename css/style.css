@@ -1,23 +1,37 @@
-* {
-    margin: 0;padding: 0
+/* Header */
+.large-header {
+  position: relative;
+  width: 100%;
+  background: #333;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  z-index: 1;
 }
-
-html {
-    height: 100 %
+#large-header {
+  background-image: url("http://www.thepaperwall.com/wallpapers/space/big/big_2c9f1732678b2b280c8def1cfbdf3a1cd130e945.jpg");
 }
-
-body {
-    height: 100 % ;overflow: hidden;background - color: #222;font-family:source code pro}# instance {
-        color: #fff;font - size: 1.5 rem;position: absolute;z - index: 10000;top: 1 rem;left: 1 rem
-    }
-
-h1{
-  position: fixed;
-  color: #454545;
+.main-title {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  color: #ecf0f1;
+  text-align: center;
   top: 50%;
   left: 50%;
-  font-family: 'Arvo', serif;
-  font-size: 48px;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+.demo-1 .main-title {
+  text-transform: uppercase;
+  font-size: 4.2em;
+  letter-spacing: 0.1em;
+}
+.main-title .thin {
+  font-weight: 200;
+}
+@media only screen and (max-width: 768px) {
+  .demo-1 .main-title {
+    font-size: 3em;
+  }
 }
