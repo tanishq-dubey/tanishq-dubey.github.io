@@ -13,9 +13,11 @@ body {
 
 h1{
   position: fixed;
-  color: #ecf0f1;
+  color: #454545;
   top: 50%;
   left: 50%;
+  font-family: 'Arvo', serif;
+  font-size: 48px;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
