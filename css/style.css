@@ -1,10 +1,19 @@
-body {
-  margin: 0;
-  overflow: hidden;
+* {
+    margin: 0;padding: 0
 }
+
+html {
+    height: 100 %
+}
+
+body {
+    height: 100 % ;overflow: hidden;background - color: #222;font-family:source code pro}# instance {
+        color: #fff;font - size: 1.5 rem;position: absolute;z - index: 10000;top: 1 rem;left: 1 rem
+    }
 
 h1{
   position: fixed;
+  color: #ecf0f1;
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
