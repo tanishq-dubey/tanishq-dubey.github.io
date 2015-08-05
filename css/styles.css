@@ -52,24 +52,24 @@ tr{
 
 /* unvisited link */
 a:link {
-    color: #f2f0ec;
+    color: #3498DB;
     text-decoration: none
 }
 
 /* visited link */
 a:visited {
-    color: #f2f0ec;
+    color: #3498DB;
     text-decoration: none
 }
 
 /* mouse over link */
 a:hover {
     color: #99cc99;
-    text-decoration: underline
+    text-decoration: none
 }
 
 /* selected link */
 a:active {
     color: #7CA67C;
-    text-decoration: underline
+    text-decoration: none
 }
