@@ -12,10 +12,29 @@ html,body{
     margin-right: auto;
 }
 
+#title{
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: -.5em
+}
+
+#date{
+    font-family: 'Raleway', sans-serif;
+    font-style: oblique;
+    font-size: 15px
+}
+
+#bodyText{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
 #main{
     height: auto;
     min-height: 100%;
 }
+
 
 #content{
     display: block;
@@ -23,6 +42,13 @@ html,body{
     margin-right: auto;
     max-width: 40%;
     margin-top: .5%;
+}
+
+code{
+    background: #22313F;
+    color: #EEEEEE;
+    font-family: 'Inconsolata';
+
 }
 
 #datePost{
@@ -37,6 +63,10 @@ html,body{
     font-size: 130%
 }
 
+pre{
+    font-family: 'Inconsolata';
+}
+
 #footer {
     clear: both;
     margin-left: auto;
@@ -46,7 +76,8 @@ html,body{
     font-family: 'Montserrat', sans-serif;
     position: relative;
     z-index: 10;
-    margin-top: -3em
+    background: #fafafa
+    margin-top: 1em
 }
 
 
