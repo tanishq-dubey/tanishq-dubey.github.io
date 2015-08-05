@@ -1,0 +1,61 @@
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+    font-size: 200%;
+    font-weight: bolder
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+#typed{
+    display: inline;
+    font-size: 200%;
+    max-width: 800px;
+    margin-top: 100%;
+    max-height: 500px;
+    font-family: Inconsolata
+}
+
+html{
+    background: #0f0f0f;
+    color: #f0f0f0;
+}
+
+/* unvisited link */
+a:link {
+    color: #3498DB;
+    text-decoration: none
+}
+
+/* visited link */
+a:visited {
+    color: #3498DB;
+    text-decoration: none
+}
+
+/* mouse over link */
+a:hover {
+    color: #336E7B;
+    text-decoration: none
+}
+
+/* selected link */
+a:active {
+    color: #336E7B;
+    text-decoration: none
+}

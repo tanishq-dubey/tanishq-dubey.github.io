@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+      <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=sunburst"></script>
+      <script src ="../../js/jquery.js"></script>
+      <script src ="../../js/typed.js"></script>
+      <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="/css/404.css">
+      <meta charset="utf-8">
+      <title id="titleTab">404 - Tanishq Dubey</title>
+    <script>
+        $(function(){
+            var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var currentDayOfWeekNumber = (new Date()).getDay();
+            var currentDayOfWeek = weekdays[currentDayOfWeekNumber];
+            var dayOfWeekPastNumber = Math.floor(weekdays.length * Math.random());
+            var dayOfWeekPast;
+            var hourOfDay = new Date().getHours();
+            var timeOfDay;
+            var status = ["full", "empty"];
+            var statusTextNumber = Math.floor(status.length * Math.random());
+            var statusText = status[statusTextNumber]
+
+            if(dayOfWeekPastNumber == currentDayOfWeekNumber){
+                dayOfWeekPast = weekdays[(dayOfWeekPastNumber + 1) % weekdays.length];
+            } else {
+                dayOfWeekPast = weekdays[dayOfWeekPastNumber];
+            }
+
+            if ((hourOfDay >= 0) && (hourOfDay <= 4)){
+                timeOfDay = "dawn";
+            } else if ((hourOfDay >= 4) && (hourOfDay < 11)){
+                timeOfDay = "morning";
+            } else if ((hourOfDay >= 11) && (hourOfDay < 16)){
+                timeOfDay = "afternoon";
+            } else if ((hourOfDay >= 16) && (hourOfDay < 20)){
+                timeOfDay = "evening";
+            } else if ((hourOfDay >= 20) && (hourOfDay < 24)){
+                timeOfDay = "night";
+            }
+
+            $(".element").typed({
+            strings: ["~$ ^2000So,^3000 looks like we're both here.\n~$ ^3000I got stuck here on a " + dayOfWeekPast +" once.\n~$ ^3000It was pretty " + statusText + " then.\n~$ ^3000Now here you are, on a " + currentDayOfWeek + " " + timeOfDay + ".\n~$ ^3000Well,^2000 might was well start doing something productive.\n~$ ^2000Why don't you click <a href="+ "index.html"+ ">here</a> to find your way out.\n~$ "],
+            typeSpeed: 0,
+            showCursor: true,
+            cursorChar: "|"
+        });
+        })
+    </script>
+        <a href="index.html"></a>
+    <div class="element" style="white-space:pre" id="typed"></div>
+    </head>
+</html>
