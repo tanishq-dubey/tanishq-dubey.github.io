@@ -19,6 +19,17 @@ html,body{
     margin-bottom: -.5em
 }
 
+#holdImage{
+    text-align: center;
+}
+
+#largeImage{
+    width: 50%;
+    margin: 0 auto;
+    vertical-align:middle;
+    display:inline-block
+}
+
 #date{
     font-family: 'Raleway', sans-serif;
     font-style: oblique;
@@ -40,8 +51,9 @@ html,body{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 40%;
+    max-width: 70%;
     margin-top: .5%;
+    
 }
 
 code{
