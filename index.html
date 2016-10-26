@@ -1,142 +1,42 @@
-<!DOCTYPE html>
-<html >
-	<head>
-		<meta charset="UTF-8">
-		<title>TANISHQ DUBEY</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/style.css">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Another site on the web">
+        <meta name="author" content="Tanishq Dubey">
+        <title>Oh hello</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+            <script src="js/jquery.js"></script>
+    <script src="js/typed.js"></script>
+    </head>
+    <body>
+        <div class="main">
+            <div>Hi there, you've reached another website on the internet</div>
+            <div>This one blongs to <b>Tanishq Dubey</b>, that's me.</div>
+            <script>
+                $(function(){
+                    $(".element").typed({
+                        strings: ["systems programer", "backend developer", "computer vision enthusiast", "path-planning researcher", "teacher", "avid book reader", "music listener", "guy that doesn't know web dev", "OS builder", "machine learner"],
+                        typeSpeed: 75,
+                        loop: true,
+                        shuffle: true,
+                        cursorChar: "_"
+                    });
+                });
+            </script>
 
-		<script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-
-	</head>
-
-	<body>
-		<link href='http://fonts.googleapis.com/css?family=Montserrat|Cardo' rel='stylesheet' type='text/css'>
-  
-		<header class="main_h">
-			<div class="row">
-				<a class="logo" href="#">T/D</a>
-				<div class="mobile-toggle">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-				<nav>
-					<ul>
-						<li><a href=".sec01">About</a></li>
-						<li><a href=".heading">Past</a></li>
-						<li><a href="blog/landingPage.html">Blog</a></li>
-						<li><a href=".contact">Contact</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-
-		<header class="header-image">
-			<div class="headline">
-				<div class="container">
-					<div class='logo-image'>
-								<img class="make-it-fit" src="img/logo.png">
-					</div>
-				</div>
-			</div>
-		</header>
-
-		<div class="row content">
-			<h1 class="sec01">A bit about me</h1>
-			<p>My name is Tanishq Dubey. I am member of the 2018 undergraduate class at the University of Illinois Urbana-Champaign studying Computer Engineering. I am currently interning at The Climate Corporation as a backend software engineer.</p>
-			<p>I love eating and trying out new foods, reading sci-fi novels, and listening to music. Recently I've been listening to lots of Air and would suggest checking out their album "Moon Safari".</p>
-
-			<h1 class="heading">Things I'm part of</h1>
-				<div class="collapse">
-					<a class="card" href="#a">
-					  <div class="header" style="background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/f80be134791549.56df450e8f1d0.jpg);">
-						<h2>The Climate Corporation</h2>
-					  </div>
-					  <div class="cardcontent">
-						<p>
-						  Backend Engineering Intern
-						</p>
-						<p>
-						  I was in charge of rewriting the backend for the "Scouting" feature found in the company's "FieldView" app. Worked with Java 8, PostgreSQL on RDS, AWS S3, and EC2.
-						</p>
-					  </div>
-					</a>
-					<a class="card" href="#a">
-					  <div class="header" style="background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/4ac39b18313389.562c77eb73c5c.jpg);">
-						<h2>Anheuser Busch</h2>
-					  </div>
-					  <div class="cardcontent">
-						<p>
-						  Hardware Engineering Intern
-						</p>
-						<p>
-						  Selected as a intern from the Bud Labs Hackathon. Worked to develop a wireless drink level monitoring coaster along with a dashboard for bar management. Also developed other techonologies for the bar.
-						</p>
-					  </div>
-					</a>
-					<a class="card" href="#a">
-					  <div class="header" style="background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/hd/854ac717238689.562b78ae8eba6.jpg);">
-						<h2>Bodine Electric Company</h2>
-					  </div>
-					  <div class="cardcontent">
-						<p>
-						  Engineering Intern
-						</p>
-						<p>
-						  Worked as a general engineering intern before developing software for the company. Built tools that integrated with MS Access DBs and SolidWorks which allowed engineers to quickly search and sort large amounts of information.
-						</p>
-					  </div>
-					</a>
-					<a class="card" href="#a">
-					  <div class="header" style="background-image: url(https://img-new.cgtrader.com/items/359493/drone_predator_low-poly_3d_model_max_obj_c4d_158fe71a-498e-4f84-ba7c-1a856cdcccba.jpg);">
-						<h2>UIUC</h2>
-					  </div>
-					  <div class="cardcontent">
-						<p>
-						  Research Assistant
-						</p>
-						<p>
-						  Selected to be part of the PURE research program. Worked with Fardin Abdi and Marco Caccamo to develop a computer vision based location system for UAV platforms. Worked heavily with embedded low power systems and high speed feature matching algorithms.
-						</p>
-					  </div>
-					</a>
-					<a class="card" href="#a">
-					  <div class="header" style="background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/131a9017238689.562b77300434e.jpg);">
-						<h2>ACM@UIUC</h2>
-					  </div>
-					  <div class="cardcontent">
-						<p>
-						  Chair of SIGOPS
-						</p>
-						<p>
-						  Chair of SIGOPS (Special Interest Group for OPerating Systems) and lead weekly meeting and tutorials that discuss operating system knowledge and teach the fundamentals of OS development. More at https://www-s.acm.illinois.edu/sigops/.
-						</p>
-					  </div>
-					</a>
-					<a class="card" href="#a">
-					  <div class="header" style="background-image: url(http://jeremypaul.me/works/crystalmath/artwork-world2.jpg);">
-						<h2>CS196</h2>
-					  </div>
-					  <div class="cardcontent">
-						<p>
-						  Course Assistant
-						</p>
-						<p>
-						  Course staff for the honors section of CS125. Taught lectures on backend web development and Android development.
-						</p>
-					  </div>
-					</a>
-				</div>
-
-
-			<h1 class="contact">Contact</h1>
-
-
-		</div>
-		<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-		<script src='http://masonry.desandro.com/masonry.pkgd.js'></script>
-		<script src="js/index.js"></script>
-	</body>
+            I am a <span class="element"></span>
+            <div>&nbsp;</div>
+            <div class="more">
+                <div>Currently, I am a TA for ECE 391</div>
+                <div>Before that, I was a backend software intern at The Climate Corporation.</div>
+                <div>I'm probably doing homework for my Computer Engineering BS at UIUC right now.</div>
+                <div>My resume is <a href="static/resume.pdf">here</a></div>
+                <div>A page of a bunch of stuff I've done is <a href="info.html">there</a>.</div>
+                <div>Or contact me <a href="mailto:tanishq.dubey@gmail.com">over here</a>.</div>
+            </div>
+        </div>
+    </body>
 </html>
